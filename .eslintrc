@@ -1,0 +1,54 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "arrowFunctions": true,
+            "destructuring": true,
+            "classes": true,
+            "defaultParams": true,
+            "blockBindings": true,
+            "modules": true,
+            "objectLiteralComputedProperties": true,
+            "objectLiteralShorthandMethods": true,
+            "objectLiteralShorthandProperties": true,
+            "restParams": true,
+            "spread": true,
+            "templateStrings": true,
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        },
+    },
+    "rules": {
+        "no-console": [
+            "off"
+        ],
+        "no-unused-vars": [
+            "warn"
+        ],
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ]
+    }
+}

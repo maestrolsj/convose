@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
-import { AppLoading, Font } from 'expo'
-import styled from 'styled-components/native';
+import React, { Component } from "react";
+import { AppLoading, Font } from "expo"
+import { Provider } from "react-redux"
+import styled from "styled-components/native";
+import configureStore from "./redux/store/configureStore";
+import ConnectedRouter from "./router";
+
+const store = configureStore()
 
 export default class App extends Component {
 
@@ -18,8 +23,8 @@ export default class App extends Component {
 
     _loadAssetsAsync = async () => {
         await Font.loadAsync({
-            UbuntuBold: require('./assets/fonts/Ubuntu-Bold.ttf'),
-            UbuntuRegular: require('./assets/fonts/Ubuntu-Regular.ttf'),
+            UbuntuBold: require("./assets/fonts/Ubuntu-Bold.ttf"),
+            UbuntuRegular: require("./assets/fonts/Ubuntu-Regular.ttf"),
         })
         this.setState({
             loaded: true,
@@ -35,20 +40,12 @@ export default class App extends Component {
         }
 
         return (
-            <MainView>
-                <DefaultText>Convose App</DefaultText>
-            </MainView>
+          <Provider store={store}>
+            <ConnectedRouter/>
+          </Provider>
         )
     }
 }
-
-
-const MainView = styled.View`
-  flex: 1;
-  background-color: red;
-  align-items: center;
-  justify-content: center;
-`;
 
 const DefaultText = styled.Text`
    font-family: UbuntuRegular;
