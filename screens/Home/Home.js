@@ -4,7 +4,7 @@ import {ConvoseText, Screen} from "../../components"
 const Login = (props) => {
   return (
     <Screen>
-      <ConvoseText>Home Screen</ConvoseText>
+      <ConvoseText>Home Screen2</ConvoseText>
     </Screen>
   )
 }
