@@ -1,12 +1,42 @@
-import React from "react"
-import {ConvoseText, Screen} from "../../components"
+import React from 'react';
+import {View, Text, StyleSheet} from "react-native";
+import {Actions} from "react-native-router-flux";
 
-const Login = (props) => {
-  return (
-    <Screen>
-      <ConvoseText>Home Screen2</ConvoseText>
-    </Screen>
-  )
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5,
+  },
+});
+
+export default class extends React.Component {
+  static onEnter = () => {
+    Actions.refresh({
+      title: 'Convose',
+      leftTitle: 'Login',
+      onLeft: () => {Actions.login()}
+    });
+  };
+
+  render() {
+    console.log("Login RENDER");
+    return (
+      <View style={[styles.container, this.props.style]}>
+        <Text>Home page 1</Text>
+
+      </View>
+    );
+  }
 }
-
-export default Login

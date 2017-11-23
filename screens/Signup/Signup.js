@@ -28,10 +28,7 @@ export default class extends React.Component {
     console.log("Login RENDER");
     return (
       <View style={[styles.container, this.props.style]}>
-        <Text>Login page</Text>
-        <TouchableOpacity onPress={()=>Actions.signup()} style={{marginTop:30}}>
-          <Text> Sign Up </Text>
-        </TouchableOpacity>
+        <Text>SignUp page</Text>
 
       </View>
     );

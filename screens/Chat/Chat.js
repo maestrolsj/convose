@@ -1,7 +1,7 @@
 import React from "react"
 import {ConvoseText, Screen} from "../../components"
 
-const Login = (props) => {
+const Chat = (props) => {
   return (
     <Screen>
       <ConvoseText>Chat Screen</ConvoseText>
@@ -9,4 +9,4 @@ const Login = (props) => {
   )
 }
 
-export default Login
+export default Chat
