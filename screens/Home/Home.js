@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet,TouchableOpacity} from "react-native";
 import {Actions} from "react-native-router-flux";
+import MoreBox    from '../MoreBox';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,21 +22,32 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class extends React.Component {
-  static onEnter = () => {
+export default class Home extends React.Component {
+
+
+  static onEnter = (that) => {
     Actions.refresh({
       title: 'Convose',
       leftTitle: 'Login',
+      rightTitle: ':',
+      onRight:()=>{Actions.morebox()},
       onLeft: () => {Actions.login()}
     });
   };
 
+
+
   render() {
-    console.log("Login RENDER");
     return (
       <View style={[styles.container, this.props.style]}>
         <Text>Home page 1</Text>
+        <TouchableOpacity onPress={()=>Actions.chat()} style={{marginTop:30}}>
+          <Text>Card List View</Text>
+        </TouchableOpacity>
 
+        <TouchableOpacity onPress={()=> Actions.drawerOpen()} style={{position:'absolute', bottom:10, right:10}}>
+          <Text>New msg</Text>
+        </TouchableOpacity>
       </View>
     );
   }

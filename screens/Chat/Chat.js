@@ -1,12 +1,41 @@
-import React from "react"
-import {ConvoseText, Screen} from "../../components"
+import React from 'react';
+import {View, Text, StyleSheet,TouchableOpacity} from "react-native";
+import {Actions} from "react-native-router-flux";
 
-const Chat = (props) => {
-  return (
-    <Screen>
-      <ConvoseText>Chat Screen</ConvoseText>
-    </Screen>
-  )
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5,
+  },
+});
+
+export default class extends React.Component {
+ static onEnter = () => {
+    Actions.refresh({
+      title: 'Chat',
+      leftTitle: '< home',
+      hideNavBar:false,
+      onLeft: () => {Actions.pop()}
+    });
+  };
+
+  render() {
+    return (
+      <View style={[styles.container, this.props.style]}>
+        <Text>Chat page</Text>
+      </View>
+    );
+  }
 }
-
-export default Chat
