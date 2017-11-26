@@ -4,6 +4,8 @@ import Login from "./Login"
 import Signup from "./Signup"
 import MoreBox from "./MoreBox"
 import DrawerContent from "./DrawerContent"
+import Profile from "./Profile"
+import Search from "./Search"
 
 export {
   Chat,
@@ -11,5 +13,7 @@ export {
   Login,
   DrawerContent,
   Signup,
-  MoreBox
+  MoreBox,
+  Profile,
+  Search
 }

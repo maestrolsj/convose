@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet,TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet,TouchableOpacity,TextInput } from "react-native";
 import {Actions} from "react-native-router-flux";
-import MoreBox    from '../MoreBox';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +19,14 @@ const styles = StyleSheet.create({
     color: "#333333",
     marginBottom: 5,
   },
+  input:{
+    position:'absolute',
+    bottom:0,
+    left:0,
+    backgroundColor: 'rgba(93,194,170,0.2)',
+    width:200,
+    height:50
+  }
 });
 
 export default class Home extends React.Component {
@@ -43,6 +50,10 @@ export default class Home extends React.Component {
         <Text>Home page 1</Text>
         <TouchableOpacity onPress={()=>Actions.chat()} style={{marginTop:30}}>
           <Text>Card List View</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={Actions.search} style={styles.input}>
+          <Text style={{color: '#fff',fontSize:20}}>Search interests</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={()=> Actions.drawerOpen()} style={{position:'absolute', bottom:10, right:10}}>
