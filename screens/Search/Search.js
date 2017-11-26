@@ -43,7 +43,7 @@ export default class extends React.Component {
                    autoCapitalize        = "none"
                    autoCorrect           = {false}
                    keyboardType          = 'default'
-                   onSubmitEditing       = {() => {Actions.pop();  Keyboard.dismiss(); }}
+                   onSubmitEditing       = {() => { Keyboard.dismiss(); Actions.pop();  }}
                    returnKeyType         = "search"
                    placeholder           = 'Search Interest'
                    underlineColorAndroid ='transparent'
@@ -56,7 +56,9 @@ export default class extends React.Component {
           <Text> recommend List </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity  style={{marginTop:30}} onPress={()=>{Actions.pop();     Keyboard.dismiss()}}>
+        <TouchableOpacity  style={{marginTop:30}} onPress={()=>{
+          Keyboard.dismiss();
+          Actions.pop();   }}>
           <Text>close</Text>
         </TouchableOpacity>
 
