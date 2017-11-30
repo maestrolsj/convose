@@ -7,7 +7,16 @@ const StyledView = styled.View`
   justify-content: center;
 `;
 
+
+const RowTouchableOpacity = styled.TouchableOpacity`
+    justifyContent: space-around;
+    alignItems: center;
+    flex: 1;
+    backgroundColor: #00a1f1;
+`
+
 export {
-  StyledView
+  StyledView,
+  RowTouchableOpacity
 }
 

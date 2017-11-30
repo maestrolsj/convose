@@ -3,7 +3,8 @@ import { View, Text, Dimensions ,TouchableOpacity} from "react-native";
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 import {Actions} from "react-native-router-flux";
 
-const DeviceHeight = Dimensions.get('window').height;
+import {RowTouchableOpacity} from "./Styled"
+
 const DeviceWidth  = Dimensions.get('window').width ;
 const ViewTypes = {
   FULL: 0,
@@ -13,19 +14,7 @@ const ViewTypes = {
 
 let containerCount = 0;
 
-class CellContainer extends React.Component {
-  constructor(args) {
-    super(args);
-    this._containerId = containerCount++;
-  }
-  render() {
-    return(
-      <TouchableOpacity onPress={()=>Actions.chat()}  {...this.props}>
-        {this.props.children}<Text>Cell Id: {this._containerId}</Text>
-      </TouchableOpacity>
-    )
-  }
-}
+
 
 /***
  * To test out just copy this component and render in you root component
@@ -49,35 +38,12 @@ export default class RecycleTestComponent extends React.Component {
     //You'll need data in most cases, we don't provide it by default to enable things like data virtualization in the future
     //NOTE: For complex lists LayoutProvider will also be complex it would then make sense to move it to a different file
     this._layoutProvider = new LayoutProvider(
-      index => {
-       // if (index % 3 === 0) {
-          return ViewTypes.FULL;
-        //} else if (index % 3 === 1) {
-         // return ViewTypes.HALF_LEFT;
-        //} else {
-         // return ViewTypes.HALF_RIGHT;
-        //}
-      },
+      index =>  ViewTypes.FULL
+    ,
       (type, dim) => {
         dim.width = width;
         dim.height = 140;
-       /* switch (type) {
-          case ViewTypes.HALF_LEFT:
-            dim.width = width / 2;
-            dim.height = 160;
-            break;
-          case ViewTypes.HALF_RIGHT:
-            dim.width = width / 2;
-            dim.height = 160;
-            break;
-          case ViewTypes.FULL:
-            dim.width = width;
-            dim.height = 140;
-            break;
-          default:
-            dim.width = 0;
-            dim.height = 0;
-        }*/
+
       }
     );
 
@@ -100,28 +66,15 @@ export default class RecycleTestComponent extends React.Component {
   //Given type and data return the view component
   _rowRenderer(type, data) {
     //You can return any view here, CellContainer has no special significance
-    switch (type) {
-      case ViewTypes.HALF_LEFT:
-        return (
-          <CellContainer style={styles.containerGridLeft}>
-            <Text>Data: {data}</Text>
-          </CellContainer>
-        );
-      case ViewTypes.HALF_RIGHT:
-        return (
-          <CellContainer style={styles.containerGridRight}>
-            <Text>Data: {data}</Text>
-          </CellContainer>
-        );
-      case ViewTypes.FULL:
-        return (
-          <CellContainer style={styles.container}>
-            <Text>Data: {data}</Text>
-          </CellContainer>
-        );
-      default:
-        return null;
-    }
+    let containerId = containerCount++;
+
+       return(
+       <RowTouchableOpacity onPress={()=>Actions.chat()} >
+         <Text>Cell Id: {containerId}</Text>
+         <Text>Data: {data}</Text>
+       </RowTouchableOpacity>
+
+        )
   }
 
   render() {
@@ -129,23 +82,4 @@ export default class RecycleTestComponent extends React.Component {
       layoutProvider={this._layoutProvider} dataProvider={this.state.dataProvider} rowRenderer={this._rowRenderer} />
   }
 }
-const styles = {
-  container: {
-    justifyContent: "space-around",
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "#00a1f1"
-  },
-  containerGridLeft: {
-    justifyContent: "space-around",
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "#ffbb00"
-  },
-  containerGridRight: {
-    justifyContent: "space-around",
-    alignItems: "center",
-    flex: 1,
-    backgroundColor: "#7cbb00"
-  }
-};
+
