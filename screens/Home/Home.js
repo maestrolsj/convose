@@ -23,9 +23,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input:{
-    position:'absolute',
-    bottom:0,
-    left:0,
+
     width:DeviceWidth,
     height:50,
     flexDirection:'row'
@@ -49,7 +47,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <Screen>
+      <Screen style={{justifyContent:'flex-end'}}>
 
         <CardList/>
 
