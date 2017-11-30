@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet,TouchableOpacity,TextInput } from "react-native";
 import {Actions} from "react-native-router-flux";
-import Screen from "../../components/Screen/";
+import {Screen,CardList} from "../../components/";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:0,
     left:0,
-    backgroundColor: 'rgba(93,194,170,0.2)',
+    backgroundColor: 'rgb(93,194,170)',
     width:200,
     height:50
   }
@@ -47,11 +47,9 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <View style={[styles.container, this.props.style]}>
-        <Text>Home page 1</Text>
-        <TouchableOpacity onPress={()=>Actions.chat()} style={{marginTop:30}}>
-          <Text>Card List View</Text>
-        </TouchableOpacity>
+      <Screen>
+
+        <CardList/>
 
         <TouchableOpacity onPress={Actions.search} style={styles.input}>
           <Text style={{color: '#fff',fontSize:20}}>Search interests</Text>
@@ -60,7 +58,7 @@ export default class Home extends React.Component {
         <TouchableOpacity onPress={()=> Actions.drawerOpen()} style={{position:'absolute', bottom:10, right:10}}>
           <Text>New msg</Text>
         </TouchableOpacity>
-      </View>
+      </Screen>
     );
   }
 }

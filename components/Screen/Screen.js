@@ -3,12 +3,10 @@ import { ScrollView } from "react-native"
 import PropTypes from "prop-types"
 import {StyledView} from "./Styled"
 
-const Screen = ({ children }) => {
+const Screen = ({ children, ...styleProps }) => {
   return (
-    <StyledView>
-      <ScrollView keyboardShouldPersistTaps={"handled"}>
+    <StyledView {...styleProps}>
         { children }
-      </ScrollView>
     </StyledView>
   )
 }
