@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { View, Text, Dimensions ,TouchableOpacity} from "react-native";
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 import {Actions} from "react-native-router-flux";
+import ShadowView from 'react-native-shadow-view'
 
 import {RowTouchableOpacity} from "./Styled"
 
 const DeviceWidth  = Dimensions.get('window').width ;
+const DeviceHeight  = Dimensions.get('window').height ;
+
 const ViewTypes = {
   FULL: 0,
   HALF_LEFT: 1,
@@ -15,6 +18,24 @@ const ViewTypes = {
 let containerCount = 0;
 
 
+const CardUserData = [
+  {
+    avatar: '../images/cat.png',
+    username:'John Snow',
+    activity: true,
+    cardtheme: 'THEME04',
+    interests:
+      [{content: 'English', proficiency: 0}, {content: 'French', proficiency: 0}, {content: 'Sing', proficiency: 0}, {content: 'Traveling', proficiency: 0}, {content: 'Hiking', proficiency: 0}, {content: 'Basketball', proficiency: 0}, {content: 'Gaming', proficiency: 0}, {content: 'Skiing', proficiency: 0},{content: 'Food', proficiency: 0}]
+  },
+  {
+    avatar: '../images/dog.png',
+    username:'Ishily Summer',
+    activity: false,
+    cardtheme: 'THEME06',
+    interests:
+      [{content: 'English', proficiency: 0}, {content: 'French', proficiency: 0}, {content: 'Sing', proficiency: 0}, {content: 'Traveling', proficiency: 0}, {content: 'Hiking', proficiency: 0}, {content: 'Basketball', proficiency: 0}, {content: 'Gaming', proficiency: 0}, {content: 'Skiing', proficiency: 0},{content: 'Food', proficiency: 0}]
+  }
+]
 
 /***
  * To test out just copy this component and render in you root component
@@ -24,32 +45,22 @@ export default class RecycleTestComponent extends React.Component {
     super(args);
 
     let { width } = Dimensions.get("window");
-
-    //Create the data provider and provide method which takes in two rows of data and return if those two are different or not.
-    //THIS IS VERY IMPORTANT, FORGET PERFORMANCE IF THIS IS MESSED UP
     let dataProvider = new DataProvider((r1, r2) => {
       return r1 !== r2;
     });
 
-    //Create the layout provider
-    //First method: Given an index return the type of item e.g ListItemType1, ListItemType2 in case you have variety of items in your list/grid
-    //Second: Given a type and object set the exact height and width for that type on given object, if you're using non deterministic rendering provide close estimates
-    //If you need data based check you can access your data provider here
-    //You'll need data in most cases, we don't provide it by default to enable things like data virtualization in the future
-    //NOTE: For complex lists LayoutProvider will also be complex it would then make sense to move it to a different file
     this._layoutProvider = new LayoutProvider(
       index =>  ViewTypes.FULL
     ,
       (type, dim) => {
         dim.width = width;
-        dim.height = 140;
+        dim.height = 300;
 
       }
     );
 
     this._rowRenderer = this._rowRenderer.bind(this);
 
-    //Since component should always render once data has changed, make data provider part of the state
     this.state = {
       dataProvider: dataProvider.cloneWithRows(this._generateArray(300))
     };
@@ -63,22 +74,38 @@ export default class RecycleTestComponent extends React.Component {
     return arr;
   }
 
-  //Given type and data return the view component
   _rowRenderer(type, data) {
-    //You can return any view here, CellContainer has no special significance
     let containerId = containerCount++;
 
        return(
-       <RowTouchableOpacity onPress={()=>Actions.chat()} >
-         <Text>Cell Id: {containerId}</Text>
-         <Text>Data: {data}</Text>
-       </RowTouchableOpacity>
+
+           <ShadowView style={{
+             height    : 280,
+             backgroundColor: 'white',
+             borderRadius: 10,
+             justifyContent: 'center',
+             alignItems: 'center',
+
+             shadowColor: '#000',
+             shadowOffset: {
+               width: 0, height: 2,
+             },
+             shadowOpacity: 0.3,
+             shadowRadius: 4,
+             margin:20
+           }}>
+             <TouchableOpacity onPress={()=>Actions.chat()} style={{width:DeviceWidth-20,height:280,justifyContent:'center', alignItems:'center'}} >
+               <Text>Cell Id: {containerId}</Text>
+               <Text>Data: {data}</Text>
+             </TouchableOpacity>
+           </ShadowView>
+
 
         )
   }
 
   render() {
-    return <RecyclerListView style={{width:DeviceWidth, height:300}}
+    return <RecyclerListView style={{width:DeviceWidth, height:DeviceHeight}}
       layoutProvider={this._layoutProvider} dataProvider={this.state.dataProvider} rowRenderer={this._rowRenderer} />
   }
 }

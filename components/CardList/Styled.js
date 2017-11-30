@@ -1,5 +1,7 @@
 import styled from "styled-components/native";
+import { StyleConst } from '../../const'
 
+const { COLORS, TRANSITION } = StyleConst
 const StyledView = styled.View`
   flex: 1;
   background-color: red;
@@ -9,10 +11,10 @@ const StyledView = styled.View`
 
 
 const RowTouchableOpacity = styled.TouchableOpacity`
-    justifyContent: space-around;
+    justifyContent: center;
     alignItems: center;
-    flex: 1;
-    backgroundColor: #00a1f1;
+    backgroundColor: ${COLORS.CARD_BACKGROUND};
+    borderRadius:2;
 `
 
 export {
