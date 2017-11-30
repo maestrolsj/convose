@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet,TouchableOpacity,TextInput } from "react-native";
+import {View, Text, StyleSheet,TouchableOpacity,TextInput,Dimensions } from "react-native";
 import {Actions} from "react-native-router-flux";
 import {Screen,CardList} from "../../components/";
 
+const DeviceHeight = Dimensions.get('window').height;
+const DeviceWidth  = Dimensions.get('window').width ;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -24,9 +26,9 @@ const styles = StyleSheet.create({
     position:'absolute',
     bottom:0,
     left:0,
-    backgroundColor: 'rgb(93,194,170)',
-    width:200,
-    height:50
+    width:DeviceWidth,
+    height:50,
+    flexDirection:'row'
   }
 });
 
@@ -51,13 +53,15 @@ export default class Home extends React.Component {
 
         <CardList/>
 
-        <TouchableOpacity onPress={Actions.search} style={styles.input}>
-          <Text style={{color: '#fff',fontSize:20}}>Search interests</Text>
-        </TouchableOpacity>
+        <View  style={styles.input}>
+          <TouchableOpacity onPress={Actions.search} style={{flex:3, backgroundColor:'gray',alignItems:'center',justifyContent:'center'}}>
+            <Text style={{color: '#fff',fontSize:20}}>Search interests</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={()=> Actions.drawerOpen()} style={{position:'absolute', bottom:10, right:10}}>
-          <Text>New msg</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={()=> Actions.drawerOpen()} style={{flex:1,backgroundColor:'gold', alignItems:'center',justifyContent:'center'}}>
+            <Text>New msg</Text>
+          </TouchableOpacity>
+        </View>
       </Screen>
     );
   }
