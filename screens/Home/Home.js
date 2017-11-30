@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet,TouchableOpacity,TextInput } from "react-native";
 import {Actions} from "react-native-router-flux";
+import Screen from "../../components/Screen/";
 
 const styles = StyleSheet.create({
   container: {
