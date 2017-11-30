@@ -50,16 +50,18 @@ export default class RecycleTestComponent extends React.Component {
     //NOTE: For complex lists LayoutProvider will also be complex it would then make sense to move it to a different file
     this._layoutProvider = new LayoutProvider(
       index => {
-        if (index % 3 === 0) {
+       // if (index % 3 === 0) {
           return ViewTypes.FULL;
-        } else if (index % 3 === 1) {
-          return ViewTypes.HALF_LEFT;
-        } else {
-          return ViewTypes.HALF_RIGHT;
-        }
+        //} else if (index % 3 === 1) {
+         // return ViewTypes.HALF_LEFT;
+        //} else {
+         // return ViewTypes.HALF_RIGHT;
+        //}
       },
       (type, dim) => {
-        switch (type) {
+        dim.width = width;
+        dim.height = 140;
+       /* switch (type) {
           case ViewTypes.HALF_LEFT:
             dim.width = width / 2;
             dim.height = 160;
@@ -75,7 +77,7 @@ export default class RecycleTestComponent extends React.Component {
           default:
             dim.width = 0;
             dim.height = 0;
-        }
+        }*/
       }
     );
 
