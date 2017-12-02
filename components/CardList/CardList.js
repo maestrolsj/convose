@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, Dimensions ,TouchableOpacity} from "react-native";
+import { View, Text, Dimensions ,TouchableOpacity, Image} from "react-native";
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 import {Actions} from "react-native-router-flux";
 import ShadowView from 'react-native-shadow-view'
+import {StyleConst} from "../../const";
 
 import {RowTouchableOpacity} from "./Styled"
 
@@ -80,7 +81,8 @@ export default class RecycleTestComponent extends React.Component {
        return(
 
            <ShadowView style={{
-             height    : 280,
+
+             height    : 250,
              backgroundColor: 'white',
              borderRadius: 10,
              justifyContent: 'center',
@@ -92,11 +94,28 @@ export default class RecycleTestComponent extends React.Component {
              },
              shadowOpacity: 0.3,
              shadowRadius: 4,
-             margin:20
+             margin:30
            }}>
-             <TouchableOpacity onPress={()=>Actions.chat()} style={{width:DeviceWidth-20,height:280,justifyContent:'center', alignItems:'center'}} >
+
+             <TouchableOpacity onPress={()=>Actions.chat()} style={{width:DeviceWidth-60,height:250,alignItems:'center'}} >
+               <View style={{flex:1,flexDirection:'row'}}>
+                 <View style={{flex:1,height:60,borderRadius:10, backgroundColor:'#EC1F45',borderWidth:1, borderColor:'transparent',margin:0.5,
+                   justifyContent:'center', alignItems:'flex-end'}}>
+                   <Text style={{color:'white', fontWeight:'bold',fontSize:17, marginRight:15}}>SEJIN</Text>
+
+                 </View>
+
+               </View>
                <Text>Cell Id: {containerId}</Text>
                <Text>Data: {data}</Text>
+
+               <Image
+                 source       = {require('../../assets/images/cat.png')}
+                 borderColor  = "white"
+                 borderWidth  = {1}
+                 borderRadius = {30}
+                 style        = {{position:'absolute',left:10,top:15,width:60,height:60}}/>
+               <View   style  = {{position:'absolute',left:61,top:56,width:8,height:8,borderRadius:4, backgroundColor:'#2FED28'}}/>
              </TouchableOpacity>
            </ShadowView>
 

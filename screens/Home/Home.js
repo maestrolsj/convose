@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet,TouchableOpacity,TextInput,Dimensions } from "react-native";
+import {View, Text, StyleSheet,TouchableOpacity,TextInput,Dimensions,StatusBar } from "react-native";
 import {Actions} from "react-native-router-flux";
 import {Screen,CardList} from "../../components/";
 import { Ionicons,Octicons } from '@expo/vector-icons';
@@ -49,7 +49,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <Screen style={{justifyContent:'flex-end'}}>
-
+        <StatusBar     hidden={true}    />
         <CardList/>
 
         <View  style={styles.input}>
