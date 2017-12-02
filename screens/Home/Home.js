@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet,TouchableOpacity,TextInput,Dimensions } from "react-native";
 import {Actions} from "react-native-router-flux";
 import {Screen,CardList} from "../../components/";
+import { Ionicons,Octicons } from '@expo/vector-icons';
 
 const DeviceHeight = Dimensions.get('window').height;
 const DeviceWidth  = Dimensions.get('window').width ;
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
 export default class Home extends React.Component {
 
 
-  static onEnter = (that) => {
+  static onEnter = () => {
     Actions.refresh({
       title: 'Convose',
       leftTitle: 'Login',
@@ -52,12 +53,12 @@ export default class Home extends React.Component {
         <CardList/>
 
         <View  style={styles.input}>
-          <TouchableOpacity onPress={Actions.search} style={{flex:3, backgroundColor:'gray',alignItems:'center',justifyContent:'center'}}>
-            <Text style={{color: '#fff',fontSize:20}}>Search interests</Text>
+          <TouchableOpacity onPress={Actions.search} style={{flex:4,flexDirection:'row', backgroundColor:'white',alignItems:'center'}}>
+            <Octicons name="search" size={17} color="gray" style={{marginLeft:15}}/><Text style={{color: 'gray',fontSize:16, marginLeft:15}}>Add interests</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={()=> Actions.drawerOpen()} style={{flex:1,backgroundColor:'gold', alignItems:'center',justifyContent:'center'}}>
-            <Text>New msg</Text>
+            <Text>+1</Text>
           </TouchableOpacity>
         </View>
       </Screen>
