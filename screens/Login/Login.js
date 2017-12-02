@@ -41,7 +41,7 @@ export default class extends React.Component {
         <View style={styles.input}>
           <MaterialCommunityIcons name="email-variant" size={17} color="gray"
                                   style={{width:40, textAlign:'center'}}/>
-        <TextInput style                 = {{width: 100}}
+        <TextInput style                 = {{flex:1}}
                    autoCapitalize        = "none"
                    onSubmitEditing       = {() => this.passwordInput.focus()}
                    autoCorrect           = {false}
@@ -56,7 +56,7 @@ export default class extends React.Component {
         <View style={styles.input}>
           <MaterialCommunityIcons name="lock-open-outline" size={17} color="gray"
                                   style={{width:40, textAlign:'center'}}/>
-        <TextInput style                 = {{width: 100}}
+        <TextInput style                 = {{flex:1}}
                    returnKeyType         = "go"
                    ref                   = {(input)=> this.passwordInput = input}
                    placeholder           = 'Password'
