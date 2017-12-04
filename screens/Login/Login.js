@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity,TextInput} from "react-native";
 import {Actions} from "react-native-router-flux";
 import {Screen} from "../../components/";
+import ConvoseText           from "../../components/ConvoseText"
 import { FontAwesome,MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 
@@ -37,7 +38,7 @@ export default class extends React.Component {
     return (
       <Screen>
 
-        <Text style={{color:'#353535', fontWeight:'bold',marginBottom:50, fontSize:25}}>Login In</Text>
+        <ConvoseText style={{color:'#353535', fontWeight:'bold',marginBottom:50, fontSize:25}}>Login In</ConvoseText>
         <View style={styles.input}>
           <MaterialCommunityIcons name="email-variant" size={17} color="gray"
                                   style={{width:40, textAlign:'center'}}/>
@@ -67,14 +68,14 @@ export default class extends React.Component {
         </View>
 
         <TouchableOpacity style={{width:100,height:40,borderWidth:1, borderColor:'blue',justifyContent:'center',alignItems:'center',marginTop:20}}>
-          <Text>Log In</Text>
+          <ConvoseText>Log In</ConvoseText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{marginTop:10}}>
-          <Text>Forgot Password?</Text>
+        <TouchableOpacity style={{marginTop:10, fontSize:15}}>
+          <ConvoseText>Forgot Password?</ConvoseText>
         </TouchableOpacity>
 
-        <Text style={{marginTop:10, marginBottom:30}}>Or, Log In with</Text>
+        <ConvoseText style={{marginTop:10, marginBottom:30, fontSize:15}}>Or, Log In with</ConvoseText>
 
         <FontAwesome.Button name="facebook" backgroundColor="#3b5998" onPress={this.login} >
           Login with Facebook

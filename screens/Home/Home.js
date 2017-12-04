@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet,TouchableOpacity,TextInput,Dimensions,StatusBar } from "react-native";
-import {Actions} from "react-native-router-flux";
-import {Screen,CardList} from "../../components/";
+import {Actions}             from "react-native-router-flux";
+import {Screen,CardList}     from "../../components/";
 import { Ionicons,Octicons } from '@expo/vector-icons';
 
 const DeviceHeight = Dimensions.get('window').height;
