@@ -71,8 +71,8 @@ export default class extends React.Component {
           <ConvoseText>Log In</ConvoseText>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{marginTop:10, fontSize:15}}>
-          <ConvoseText>Forgot Password?</ConvoseText>
+        <TouchableOpacity style={{marginTop:10}}>
+          <ConvoseText style={{fontSize:15}}>Forgot Password?</ConvoseText>
         </TouchableOpacity>
 
         <ConvoseText style={{marginTop:10, marginBottom:30, fontSize:15}}>Or, Log In with</ConvoseText>
