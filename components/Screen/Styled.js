@@ -5,7 +5,9 @@ const StyledView = styled.View`
   background-color: #F5FCFF;
   align-items: center;
   justify-content: center;
+  
 `;
+
 
 export {
   StyledView
