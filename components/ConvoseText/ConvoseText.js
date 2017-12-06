@@ -14,11 +14,13 @@ ConvoseText.propTypes = {
   children: PropTypes.any,
   fontSize: PropTypes.string,
   isBold: PropTypes.bool,
+  color : PropTypes.string
 }
 
 ConvoseText.defaultProps = {
   fontSize: "24px",
   isBold: false,
+  color:'black'
 }
 
 export default ConvoseText;
