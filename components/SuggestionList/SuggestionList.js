@@ -22,7 +22,7 @@ class SuggestionList extends React.Component {
 
   renderRow(items) {
     return (
-      <View style={{height:30}}>
+      <View style={{height:30,flex:1, justifyContent:'center', marginLeft:100}}>
       <Text>{items.item}</Text>
       </View>
     )
@@ -32,25 +32,27 @@ class SuggestionList extends React.Component {
       return (
 
         <View>
+          <View style={{flexDirection:'row', backgroundColor:'white', justifyContent:'center',alignItems:'center'}}>
+            <Octicons name="search" size={17} color="gray" style={{marginLeft:20, marginRight:15}}/>
+            <TextInput style                 = {styles.input}
+                       autoCapitalize        = "none"
+                       autoCorrect           = {false}
+                       keyboardType          = 'default'
+                       onSubmitEditing       = {() => { Keyboard.dismiss(); }}
+                       onChangeText          = {(text) => this.props.onChange(text) }
+                       returnKeyType         = "search"
+                       placeholder           = 'Search Interest'
+                       underlineColorAndroid = 'transparent'
+                       placeholderTextColor  = 'gray'
+                       autoFocus             = {true}
 
-          <TextInput style                 = {styles.input}
-                     autoCapitalize        = "none"
-                     autoCorrect           = {false}
-                     keyboardType          = 'default'
-                     onSubmitEditing       = {() => { Keyboard.dismiss(); }}
-                     onChangeText          = {(text) => this.props.onChange(text) }
-                     returnKeyType         = "search"
-                     placeholder           = 'Search Interest'
-                     underlineColorAndroid = 'transparent'
-                     placeholderTextColor  = 'gray'
-                     autoFocus             = {true}
 
-
-          />
+            />
+          </View>
           <FlatList
             data       = {this.props.suggestedWords.suggestions}
             renderItem = {this.renderRow}
-            style={{position:'absolute',top:50,left:0, height:300}}
+            style={{position:'absolute',top:50,left:0, width:DeviceWidth,height:300}}
             keyExtractor          = {(item, index) => index}
           />
 
