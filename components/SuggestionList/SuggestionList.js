@@ -33,7 +33,7 @@ class SuggestionList extends React.Component {
 
         <View>
           <View style={{flexDirection:'row', backgroundColor:'white', justifyContent:'center',alignItems:'center'}}>
-            <Octicons name="search" size={17} color="gray" style={{marginLeft:20, marginRight:15}}/>
+            <Octicons name="search" size={17} color="gray" style={{marginLeft:15}}/>
             <TextInput style                 = {styles.input}
                        autoCapitalize        = "none"
                        autoCorrect           = {false}
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     color: 'black',
     width:DeviceWidth,
-    height:50
+    height:50,
+    marginLeft:10
   }
 });
