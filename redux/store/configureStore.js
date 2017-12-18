@@ -7,6 +7,9 @@ import { auth, storage } from "../middleware"
 import reducers from "../reducers"
 
 export default function configureStore(initialState = {}) {
-  const enhancers = [applyMiddleware(thunk, promise, logger, auth, storage)]
-  return createStore(reducers, initialState, compose(...enhancers))
+ // const enhancers = [applyMiddleware(thunk, promise, logger, auth, storage)]
+  //return createStore(reducers, initialState, compose(...enhancers))
+
+  return applyMiddleware(thunk, promise, logger, auth, storage)(createStore)(reducers, initialState)
+
 }

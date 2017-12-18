@@ -77,3 +77,63 @@ export const logoutUser = () => {
 const logoutUserSuccess = () => ({
   type: ACTION_TYPES.LOGOUT_SUCCESS,
 })
+
+
+
+export const changeSuggestions = suggestions =>
+  ({
+    type: ACTION_TYPES.CHANGE_SUGGESTIONS,
+    payload: suggestions
+  })
+
+export const clearSuggestions = () =>
+  ({
+    type: ACTION_TYPES.CLEAR_SUGGESTIONS
+  })
+
+export const fetchSuggestion = value => dispatch => {
+
+  dispatch({
+    type: ACTION_TYPES.FETCH_SUGGESTIONS
+  })
+
+
+  setTimeout(()=>{
+     let allInterest = ['apple','airplane','abcd','air ball','air','banana','bell'];
+     let suggestions = allInterest.filter(v=> v.includes(value));
+     dispatch(changeSuggestions(suggestions));
+
+  },500);
+
+
+
+  /*
+  fetch('http://localhost:3333/resorts/' + value)
+    .then(response => response.json())
+    .then(suggestions => {
+
+      dispatch({
+        type: ACTION_TYPES.CHANGE_SUGGESTIONS,
+        payload: suggestions
+      })
+
+    })
+    .catch(error => {
+
+      dispatch(
+        addError(error.message)
+      )
+
+      dispatch({
+        type: ACTION_TYPES.CANCEL_FETCHING
+      })
+
+    })*/
+
+}
+
+
+
+export const clearSuggestion = ()=>({
+  type:ACTION_TYPES.CLEAR_SUGGESTIONS
+})

@@ -1,9 +1,10 @@
-import { combineReducers } from "redux"
-import { reducer as form } from "redux-form"
-import auth from "./auth"
-import network from "./network"
-import routes from "./routes"
-import storage from "./storage"
+import { combineReducers }    from "redux"
+import { reducer as form }    from "redux-form"
+import auth                   from "./auth"
+import network                from "./network"
+import routes                 from "./routes"
+import storage                from "./storage"
+import {fetching,suggestions} from "./suggest"
 
 export default combineReducers({
   auth,
@@ -11,6 +12,11 @@ export default combineReducers({
   network,
   routes,
   storage,
+  suggestedWords: combineReducers({
+     fetching,
+     suggestions
+  })
+
 })
 
 export const getAuth = ({ auth }) => auth

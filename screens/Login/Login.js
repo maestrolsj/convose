@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity,TextInput} from "react-native";
 import {Actions} from "react-native-router-flux";
-import {Screen} from "../../components/";
-import ConvoseText           from "../../components/ConvoseText"
 import { FontAwesome,MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import {Screen,CardList,TouchOpacityBt, ConvoseText, ConvoseView}     from "../../components/";
 
 
 const styles = StyleSheet.create({
@@ -39,7 +38,7 @@ export default class extends React.Component {
       <Screen>
 
         <ConvoseText style={{color:'#353535', fontWeight:'bold',marginBottom:50, fontSize:25}}>Login In</ConvoseText>
-        <View style={styles.input}>
+        <ConvoseView  width={250} height={40}  flexDirection="row" style={{borderBottomWidth:1, borderBottomColor:'gray', marginTop:20,  alignItems:'center'}}>
           <MaterialCommunityIcons name="email-variant" size={17} color="gray"
                                   style={{width:40, textAlign:'center'}}/>
         <TextInput style                 = {{flex:1}}
@@ -52,7 +51,7 @@ export default class extends React.Component {
                    placeholder           = 'Email'
                    underlineColorAndroid ='transparent'
                    placeholderTextColor  ='gray'/>
-        </View>
+        </ConvoseView>
 
         <View style={styles.input}>
           <MaterialCommunityIcons name="lock-open-outline" size={17} color="gray"

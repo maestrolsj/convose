@@ -5,8 +5,9 @@ import {Screen,CardList,TouchOpacityBt, ConvoseText}     from "../../components/
 import { Ionicons,Octicons } from '@expo/vector-icons';
 
 
-export default class Home extends React.Component {
 
+
+export default class Home extends React.Component {
 
   static onEnter = () => {
     Actions.refresh({

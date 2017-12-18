@@ -33,7 +33,6 @@ class SuggestionList extends React.Component {
 
         <View>
 
-
           <TextInput style                 = {styles.input}
                      autoCapitalize        = "none"
                      autoCorrect           = {false}
@@ -54,7 +53,6 @@ class SuggestionList extends React.Component {
             style={{position:'absolute',top:50,left:0, height:300}}
             keyExtractor          = {(item, index) => index}
           />
-
 
         </View>
       )
@@ -91,7 +89,6 @@ const mapDispatchToProps = dispatch =>
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(SuggestionList)
-
 
 
 const styles = StyleSheet.create({
