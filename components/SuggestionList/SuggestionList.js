@@ -22,7 +22,7 @@ class SuggestionList extends React.Component {
 
   renderRow(items) {
     return (
-      <View style={{height:30,flex:1, justifyContent:'center', marginLeft:100}}>
+      <View style={{height:30,flex:1, justifyContent:'center', marginLeft:50}}>
       <Text>{items.item.text}   ({items.item.user_count})</Text>
       </View>
     )
@@ -31,8 +31,8 @@ class SuggestionList extends React.Component {
     {
       return (
 
-        <View>
-          <View style={{flexDirection:'row', backgroundColor:'white', justifyContent:'center',alignItems:'center'}}>
+        <View style={{width:DeviceWidth}}>
+          <View style={{flexDirection:'row', alignItems:'center', backgroundColor:'white'}}>
             <Octicons name="search" size={17} color="gray" style={{marginLeft:15}}/>
             <TextInput style                 = {styles.input}
                        autoCapitalize        = "none"
