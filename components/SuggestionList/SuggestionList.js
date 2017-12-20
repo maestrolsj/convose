@@ -10,7 +10,6 @@ import { Ionicons,Octicons } from '@expo/vector-icons';
  */
 
 
-
 const DeviceWidth  = Dimensions.get('window').width ;
 
 
