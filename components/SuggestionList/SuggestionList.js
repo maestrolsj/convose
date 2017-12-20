@@ -23,7 +23,7 @@ class SuggestionList extends React.Component {
   renderRow(items) {
     return (
       <View style={{height:30,flex:1, justifyContent:'center', marginLeft:100}}>
-      <Text>{items.item.text}</Text>
+      <Text>{items.item.text}   ({items.item.user_count})</Text>
       </View>
     )
   }
