@@ -33,6 +33,8 @@ export const suggestions = (state=[], action) => {
       return []
 
     case ACTION_TYPES.CHANGE_SUGGESTIONS :
+      console.log("*********&&&&&*********");
+      console.log(action.payload);
       return action.payload
 
     default :

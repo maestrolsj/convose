@@ -97,38 +97,36 @@ export const fetchSuggestion = value => dispatch => {
     type: ACTION_TYPES.FETCH_SUGGESTIONS
   })
 
-
+/*
   setTimeout(()=>{
      let allInterest = ['apple','airplane','abcd','air ball','air','banana','bell'];
      let suggestions = allInterest.filter(v=> v.includes(value));
      dispatch(changeSuggestions(suggestions));
 
   },500);
+*/
 
 
 
-  /*
-  fetch('http://localhost:3333/resorts/' + value)
-    .then(response => response.json())
+  fetch(`http://beta.convose.com/autocomplete/interests?q=${value}&limit=1000`)
+    .then(response => response._bodyInit)
     .then(suggestions => {
-
-      dispatch({
-        type: ACTION_TYPES.CHANGE_SUGGESTIONS,
-        payload: suggestions
-      })
+      dispatch(changeSuggestions(JSON.parse(suggestions).autocomplete));
 
     })
     .catch(error => {
 
-      dispatch(
+      console.log("####**********ERROR  ###****##");
+      console.log(error.message);
+    /*  dispatch(
         addError(error.message)
-      )
+      )*/
 
       dispatch({
         type: ACTION_TYPES.CANCEL_FETCHING
       })
 
-    })*/
+    })
 
 }
 
