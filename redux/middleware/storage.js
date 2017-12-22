@@ -24,7 +24,12 @@ export default store => next => (action) => {
       AsyncStorage.removeItem("authData")
       break
 
+    case ACTION_TYPES.SAVE_AUTH_STORAGE:
+       AsyncStorage.setItem("authData", JSON.stringify(action.payload));
+
+
     default:
+
       break
   }
 

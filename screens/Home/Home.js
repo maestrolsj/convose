@@ -1,13 +1,13 @@
-import React from 'react';
+import React   from 'react';
 import {View, Text, StyleSheet,TouchableOpacity,TextInput,StatusBar } from "react-native";
-import {Actions}             from "react-native-router-flux";
+import {Actions}                                         from "react-native-router-flux";
 import {Screen,CardList,TouchOpacityBt, ConvoseText}     from "../../components/";
 import { Ionicons,Octicons } from '@expo/vector-icons';
+import {connect}            from 'react-redux'              ;
+import {getAuthStorage}      from "../../redux/actions";
 
 
-
-
-export default class Home extends React.Component {
+ class Home extends React.Component {
 
   static onEnter = () => {
     Actions.refresh({
@@ -19,11 +19,17 @@ export default class Home extends React.Component {
     });
   };
 
+   constructor(props) {
+     super(props);
+     this.props.getUserFromStorage();
+  }
 
   render() {
+
     return (
       <Screen style={{justifyContent:'flex-end'}}>
         <StatusBar     hidden={true}    />
+        <Text>{this.props.userInfo.email}</Text>
         <CardList/>
 
         <View  flexDirection="row" height={50}>
@@ -40,3 +46,19 @@ export default class Home extends React.Component {
     );
   }
 }
+
+
+
+const mapStateToProps = (state) => ({
+  userInfo: state.storage.userInfo
+});
+
+
+const mapDispatchToProps = dispatch =>
+  ({
+    getUserFromStorage() {
+        dispatch( getAuthStorage())
+    }
+  })
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

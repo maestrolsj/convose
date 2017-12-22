@@ -8,24 +8,48 @@ export const getAuthStorage = () => {
   return dispatch => {
     AsyncStorage.getItem("authData")
       .then(value => {
-        const userData = JSON.parse(value)
-        if (userData) {
-          return userData
-        }
-        else {
-          throw new Error("no authData")
+        const userData = JSON.parse(value);
+
+        if (userData)    return userData
+        else { // Request Guest ID
+          fetch('http://beta.convose.com/users/guest', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            }
+          })
+            .then(response => JSON.parse(response._bodyInit))
+            .then(guestInfo => {
+              dispatch(saveAuthStorage(guestInfo));
+              return guestInfo
+            })
+            .catch(error =>  console.log(error))
         }
       })
       .then(userData => {
-        console.log("loaded userData: ", userData)
-        dispatch(dispatch(getAuthStorageSuccess()))
-        dispatch(loginUserAuto(userData))
+        dispatch({type:ACTION_TYPES.GET_AUTH_STORAGE,
+                  payload:userData
+        });
+        dispatch(getAuthStorageSuccess());
+        //dispatch(loginUserAuto(userData))
       })
       .catch(error => {
+        console.log(error);
         dispatch(dispatch(getAuthStorageFailure()))
       })
   }
 }
+
+
+
+
+const saveAuthStorage= guestInfo => ({
+  type: ACTION_TYPES.SAVE_AUTH_STORAGE,
+  payload:guestInfo
+})
+
+
 
 const getAuthStorageSuccess= () => ({
   type: ACTION_TYPES.GET_AUTH_STORAGE_SUCCESS,
@@ -96,16 +120,6 @@ export const fetchSuggestion = value => dispatch => {
   dispatch({
     type: ACTION_TYPES.FETCH_SUGGESTIONS
   })
-
-/*
-  setTimeout(()=>{
-     let allInterest = ['apple','airplane','abcd','air ball','air','banana','bell'];
-     let suggestions = allInterest.filter(v=> v.includes(value));
-     dispatch(changeSuggestions(suggestions));
-
-  },500);
-*/
-
 
 
   fetch(`http://beta.convose.com/autocomplete/interests?q=${value}&limit=1000`)
