@@ -30,7 +30,7 @@ export default ConvoseRouter = () => (
                 titleStyle={{alignSelf: 'center'}}
 
               >
-                <Scene key="home" component={Home} title="Home" initial/>
+                <Scene key="home" component={Home} title="Home" initial hideNavBar/>
                 <Scene key="login" component={Login} title="Login"/>
                 <Scene key="signup" component={Signup} title="Signup"/>
 

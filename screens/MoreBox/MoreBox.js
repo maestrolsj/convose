@@ -1,24 +1,19 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions, Button,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, Dimensions, Button,TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+const DeviceWidth  = Dimensions.get('window').width ;
+const DeviceHeight = Dimensions.get('window').height ;
+
+
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor:'gray',
-    borderWidth:1
-  },
+  container: {position:'absolute', width:DeviceWidth, height:DeviceHeight, backgroundColor:'transparent'},
 });
 
+
+
 const MoreBox = ({ children }) => (
-  <TouchableOpacity style={styles.container} onPress={Actions.pop}>
+  <TouchableHighlight  style={styles.container} onPress={Actions.pop} underlayColor="transparent" activeOpacity={1}>
      <View style={{position:'absolute',top:60,right:5,backgroundColor:'white', width:100,height:100}}>
        <TouchableOpacity   onPress={Actions.login}>
         <Text>Login</Text>
@@ -28,7 +23,7 @@ const MoreBox = ({ children }) => (
          <Text>Profile</Text>
        </TouchableOpacity>
       </View>
-  </TouchableOpacity>
+  </TouchableHighlight>
 );
 
 export default MoreBox;

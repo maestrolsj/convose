@@ -1,23 +1,33 @@
 import React   from 'react';
-import {View, Text, StyleSheet,TouchableOpacity,TextInput,StatusBar } from "react-native";
+import {View, Text,Image ,StyleSheet,TouchableOpacity,TextInput,StatusBar, Dimensions } from "react-native";
 import {Actions}                                         from "react-native-router-flux";
-import {Screen,CardList,TouchOpacityBt, ConvoseText}     from "../../components/";
-import { Ionicons,Octicons } from '@expo/vector-icons';
+import {Screen,CardList,TouchOpacityBt, ConvoseText, ConvoseNavbar, ConvoseView}     from "../../components/";
+import { Ionicons,Octicons, Entypo } from '@expo/vector-icons';
 import {connect}            from 'react-redux'              ;
 import {getAuthStorage}      from "../../redux/actions";
 
 
- class Home extends React.Component {
 
+
+const DeviceWidth  = Dimensions.get('window').width ;
+
+
+ class Home extends React.Component {
+/*
   static onEnter = () => {
     Actions.refresh({
       title: 'Convose',
       leftTitle: 'Login',
       rightTitle: ':',
+      renderRightButton : (props) => {
+        return <Text>SSSS</Text>
+      },
       onRight:()=>{Actions.morebox()},
       onLeft: () => {Actions.login()}
     });
   };
+*/
+
 
    constructor(props) {
      super(props);
@@ -25,11 +35,16 @@ import {getAuthStorage}      from "../../redux/actions";
   }
 
   render() {
-
     return (
       <Screen style={{justifyContent:'flex-end'}}>
         <StatusBar     hidden={true}    />
-        <Text>{this.props.userInfo.email}</Text>
+        <ConvoseNavbar>
+          <TouchOpacityBt style={{flex:1}} onPress={Actions.login}><Text>Login</Text></TouchOpacityBt>
+          <ConvoseView style={{flex:3, alignItems:'center', justifyContent:'center'}}>
+            <Image source={require('../../assets/images/logo.png')} resizeMode="contain"  style={{width:102,height:50}}/></ConvoseView>
+          <TouchOpacityBt onPress={Actions.morebox}><Entypo name="dots-three-vertical" size={17} color="gray"/></TouchOpacityBt>
+        </ConvoseNavbar>
+
         <CardList/>
 
         <View  flexDirection="row" height={50}>

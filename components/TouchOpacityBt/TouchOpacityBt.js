@@ -24,7 +24,7 @@ TouchOpacityBt.defaultProps = {
   flexDirection: 'column',
   alignItems : 'center',
   justifyContent :'center',
-  backgroundColor:'white'
+  backgroundColor:'transparent'
 }
 
 export default TouchOpacityBt;
