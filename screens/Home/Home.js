@@ -42,7 +42,7 @@ const DeviceWidth  = Dimensions.get('window').width ;
           <TouchOpacityBt style={{flex:1}} onPress={Actions.login}><Text>Login</Text></TouchOpacityBt>
           <ConvoseView style={{flex:3, alignItems:'center', justifyContent:'center'}}>
             <Image source={require('../../assets/images/logo.png')} resizeMode="contain"  style={{width:102,height:50}}/></ConvoseView>
-          <TouchOpacityBt onPress={Actions.morebox}><Entypo name="dots-three-vertical" size={17} color="gray"/></TouchOpacityBt>
+          <TouchOpacityBt onPress={Actions.morebox} style={{flex:1,height:50}}><Entypo name="dots-three-vertical" size={17} color="gray"/></TouchOpacityBt>
         </ConvoseNavbar>
 
         <CardList/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions, Button,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, Button,TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 const DeviceWidth = Dimensions.get('window').width;
@@ -10,11 +10,12 @@ const styles = StyleSheet.create({
 });
 
 const Profile = ({ children }) => (
-  <TouchableOpacity style={styles.container} onPress={Actions.pop}>
+  <TouchableHighlight  style={styles.container} onPress={Actions.pop} underlayColor="transparent" activeOpacity={1}>
+
      <View style={{position:'absolute',top:0,right:0,backgroundColor:'white', width:DeviceWidth-80,height:DeviceHeight}}>
         <Text style={{marginTop:100}}>Profile</Text>
       </View>
-  </TouchableOpacity>
+  </TouchableHighlight>
 );
 
 export default Profile;
