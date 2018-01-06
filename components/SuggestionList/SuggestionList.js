@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Dimensions ,TouchableOpacity, TextInput, StyleSheet, Keyboard,FlatList} from "react-native";
 import {connect}            from 'react-redux'              ;
-import {fetchSuggestion, clearSuggestions} from "../../redux/actions";
+import {fetchSuggestion, clearSuggestions, updateProfile} from "../../redux/actions";
 import { Ionicons,Octicons } from '@expo/vector-icons';
 
 
@@ -14,16 +14,20 @@ const DeviceWidth  = Dimensions.get('window').width ;
 
 
 class SuggestionList extends React.Component {
-  constructor(args) {
-    super(args);
+
+
+  constructor(props) {
+    super(props);
+    this.renderRow = this.renderRow.bind(this);
   }
 
 
   renderRow(items) {
     return (
-      <View style={{height:30,flex:1, justifyContent:'center', marginLeft:50}}>
-      <Text>{items.item.text}   ({items.item.user_count})</Text>
-      </View>
+      <TouchableOpacity style={{height:30,flex:1, justifyContent:'center', marginLeft:50}}
+                        onPress={()=>this.props.onUpdateProfile(this.props.userInfo)}>
+        <Text>{items.item.text}   ({items.item.user_count})</Text>
+      </TouchableOpacity>
     )
   }
     render()
@@ -62,12 +66,12 @@ class SuggestionList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  suggestedWords: state.suggestedWords
+  suggestedWords: state.suggestedWords,
+  userInfo      : state.storage.userInfo
 });
 
 
-const mapDispatchToProps = dispatch =>
-  ({
+const mapDispatchToProps = dispatch => ({
 
     onChange(value) {
       if (value) {
@@ -85,11 +89,17 @@ const mapDispatchToProps = dispatch =>
       dispatch(
         clearSuggestions()
       )
+    },
+    onUpdateProfile(userinfo){
+      dispatch(
+        updateProfile(userinfo)
+      )
     }
-  })
+})
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(SuggestionList)
+
 
 
 const styles = StyleSheet.create({

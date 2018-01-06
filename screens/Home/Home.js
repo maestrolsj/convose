@@ -38,6 +38,7 @@ const DeviceWidth  = Dimensions.get('window').width ;
     return (
       <Screen style={{justifyContent:'flex-end'}}>
         <StatusBar     hidden={true}    />
+
         <ConvoseNavbar>
           <TouchOpacityBt style={{flex:1}} onPress={Actions.login}><Text>Login</Text></TouchOpacityBt>
           <ConvoseView style={{flex:3, alignItems:'center', justifyContent:'center'}}>
@@ -48,9 +49,9 @@ const DeviceWidth  = Dimensions.get('window').width ;
         <CardList/>
 
         <View  flexDirection="row" height={50}>
-          <TouchOpacityBt onPress={Actions.search} flex={4} flexDirection="row">
-            <Octicons name="search" size={17} color="gray" style={{marginLeft:15}}/>
-            <ConvoseText style={{ marginLeft:15}} color="gray"  fontSize="16">Add interests</ConvoseText>
+          <TouchOpacityBt onPress={Actions.search}    flex={4}     flexDirection="row">
+            <Octicons     name   = "search"           size={17}    color="gray" style={{marginLeft:15}}/>
+            <ConvoseText style   = {{ marginLeft:15}} color="gray" fontSize="16">Add interests</ConvoseText>
           </TouchOpacityBt>
 
           <TouchOpacityBt onPress={()=> Actions.drawerOpen()} flex={1}  backgroundColor="gold">

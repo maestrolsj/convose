@@ -12,14 +12,8 @@ export const getAuthStorage = () => {
 
         if (userData)    return userData
         else { // Request Guest ID
-          fetch('http://beta.convose.com/users/guest', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            }
-          })
-            .then(response => JSON.parse(response._bodyInit))
+
+          Api.fetchGuestInfo()
             .then(guestInfo => {
               dispatch(saveAuthStorage(guestInfo));
               return guestInfo
@@ -119,23 +113,13 @@ export const fetchSuggestion = value => dispatch => {
 
   dispatch({
     type: ACTION_TYPES.FETCH_SUGGESTIONS
-  })
+  });
 
+  let parm = `?q=${value}&limit=1000`;
 
-  fetch(`http://beta.convose.com/autocomplete/interests?q=${value}&limit=1000`)
-    .then(response => response._bodyInit)
-    .then(suggestions => {
-      dispatch(changeSuggestions(JSON.parse(suggestions).autocomplete));
-
-    })
+  Api.fetchSuggestion(parm)
+    .then(suggestions =>  dispatch(changeSuggestions(suggestions.autocomplete))  )
     .catch(error => {
-
-      console.log("####**********ERROR  ###****##");
-      console.log(error.message);
-    /*  dispatch(
-        addError(error.message)
-      )*/
-
       dispatch({
         type: ACTION_TYPES.CANCEL_FETCHING
       })
@@ -145,6 +129,51 @@ export const fetchSuggestion = value => dispatch => {
 }
 
 
+export const updateProfile = value => dispatch =>{
+
+  console.log("###### USER PROFILE UPDATE ######");
+
+  fetch(`http://beta.convose.com/profile.json`,
+    {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization : value.authentication_token
+      },
+      body: JSON.stringify({
+        "profile": {
+          "username": value.username,
+          "passions": [
+            {"name":"Languages","skill_level":0},
+            {"name":"Sports","skill_level":3},
+            {"name":"Dingsbums","skill_level":0}
+          ],
+          "proficiencies":[
+            {"language_id":"Russian","level":3},
+            {"language_id":"German","level":3},
+            {"language_id":"English","level":3},
+            {"language_id":"Korean","level":3}
+          ]
+        }
+      }),
+    }
+  )
+    .then(response => response._bodyInit)
+    .then(suggestions => {
+      dispatch(changeSuggestions(JSON.parse(suggestions).autocomplete));
+
+    })
+    .catch(error => {
+
+      dispatch({
+        type: ACTION_TYPES.CANCEL_FETCHING
+      })
+
+    })
+
+
+}
 
 export const clearSuggestion = ()=>({
   type:ACTION_TYPES.CLEAR_SUGGESTIONS

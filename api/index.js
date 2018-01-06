@@ -15,7 +15,8 @@ const fetchEndpoint = ({ endpoint, id, values, method = 'POST' }) => {
     body: JSON.stringify(values)
   })
   .then(checkStatus)
-  .then(response => response.json())
+  .then(response => 
+    response.json()  )
 }
 
 
@@ -36,4 +37,20 @@ export const mockFetch = () => {
       return resolve()
     }, 1000)
   })
+}
+
+
+export const fetchSuggestion = values => {
+
+  const  endpoint = ENDPOINTS.SUGGESTION + values;
+  const  method   = 'GET';
+  return fetchEndpoint({ endpoint, method });
+
+}
+
+export const fetchGuestInfo = () => {
+
+  const  endpoint = ENDPOINTS.GUESTINFO;
+  const  method   = 'POST';
+  return fetchEndpoint({ endpoint, method });
 }

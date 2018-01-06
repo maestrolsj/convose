@@ -14,6 +14,7 @@ const Profile = ({ children }) => (
 
      <View style={{position:'absolute',top:0,right:0,backgroundColor:'white', width:DeviceWidth-80,height:DeviceHeight}}>
         <Text style={{marginTop:100}}>Profile</Text>
+       <Text>{this.props.userInfo.email}</Text>
       </View>
   </TouchableHighlight>
 );
