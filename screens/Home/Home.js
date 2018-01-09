@@ -66,7 +66,8 @@ const DeviceWidth  = Dimensions.get('window').width ;
 
 
 const mapStateToProps = (state) => ({
-  userInfo: state.storage.userInfo
+  userInfo: state.storage.userInfo,
+
 });
 
 
