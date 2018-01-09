@@ -4,19 +4,19 @@ import * as ENDPOINTS from './endpoints'
 /**
  * Global Fetch
  */
-const fetchEndpoint = ({ endpoint, id, values, method = 'POST' }) => {
-  console.log('fetching endpoint: ', `${endpoint}${id ? `/${id}` : '' }`, method, id, values)
+const fetchEndpoint = ({ endpoint, id, values, method = 'POST', token }) => {
+  console.log('fetching endpoint: ', `${endpoint}${id ? `/${id}` : '' }`, method, id, values, token)
   return fetch(`${endpoint}${id ? `/${id}` : '' }`, {
     method,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'Authorization' : token
     },
     body: JSON.stringify(values)
   })
   .then(checkStatus)
-  .then(response => 
-    response.json()  )
+  .then(response =>   response.json()  )
 }
 
 
@@ -48,9 +48,19 @@ export const fetchSuggestion = values => {
 
 }
 
+export const fetchPeople = values => {
+
+  const endpoint = ENDPOINTS.SEARCH_PEOPLE + `?page=0&limit=6`;
+  const method = 'GET';
+  const token  = values;
+
+  return fetchEndpoint({ endpoint, method, token });
+}
+
 export const fetchGuestInfo = () => {
 
   const  endpoint = ENDPOINTS.GUESTINFO;
   const  method   = 'POST';
   return fetchEndpoint({ endpoint, method });
 }
+
