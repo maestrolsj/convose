@@ -4,6 +4,7 @@ import auth                   from "./auth"
 import network                from "./network"
 import routes                 from "./routes"
 import storage                from "./storage"
+import people                from "./people"
 import {fetching,suggestions} from "./suggest"
 
 export default combineReducers({
@@ -15,7 +16,8 @@ export default combineReducers({
   suggestedWords: combineReducers({
      fetching,
      suggestions
-  })
+  }),
+  people
 
 })
 
