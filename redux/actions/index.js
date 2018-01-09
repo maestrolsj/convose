@@ -128,11 +128,24 @@ export const fetchSuggestion = value => dispatch => {
 
 }
 
+export const searchPeople  = value => dispatch =>{
+
+  Api.fetchPeople(value.authentication_token)
+    .then((r)=>dispatch(updatePeopleList(r.suggestions)))
+    .catch(error => { })
+}
+
+const updatePeopleList= peopleInfo => ({
+  type   : ACTION_TYPES.SEARCH_PEOPLE,
+  payload:peopleInfo
+})
+
+
+
 
 export const updateProfile = value => dispatch =>{
 
-  console.log("###### USER PROFILE UPDATE ######");
-
+/*
   fetch(`http://beta.convose.com/profile.json`,
     {
       method: 'PATCH',
@@ -170,7 +183,8 @@ export const updateProfile = value => dispatch =>{
         type: ACTION_TYPES.CANCEL_FETCHING
       })
 
-    })
+    })*/
+  dispatch(searchPeople(value));
 
 
 }

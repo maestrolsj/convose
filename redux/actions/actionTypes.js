@@ -17,6 +17,8 @@ export default ACTION_TYPES = {
 
     CANCEL_FETCHING          : "CANCEL_FETCHING",
     CLEAR_SUGGESTIONS        : "CLEAR_SUGGESTIONS",
-    UPDATE_PROFILE           : "UPDATE PROFILE"
+    UPDATE_PROFILE           : "UPDATE_PROFILE",
+
+    SEARCH_PEOPLE            : "SEARCH_PEOPLE"
 
 }
