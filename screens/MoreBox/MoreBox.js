@@ -18,15 +18,15 @@ const MoreBox = ({ children }) => (
   <TouchableHighlight  style={styles.container} onPress={Actions.pop} underlayColor="transparent" activeOpacity={1}>
 
     <ShadowView style={{
-      position:'absolute',top:60,right:5,
-      height    : 100,
-      width:180,
+      position       :'absolute',top:60,right:5,
+      height         : 100,
+      width          : 180,
       backgroundColor: 'white',
-      borderRadius: 2,
-      justifyContent: 'center',
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
+      borderRadius   : 2,
+      justifyContent : 'center',
+      alignItems     : 'center',
+      shadowColor    : '#000',
+      shadowOffset   : {
         width: 0, height: 2,
       },
       shadowOpacity: 0.3,
