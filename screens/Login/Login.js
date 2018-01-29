@@ -82,6 +82,11 @@ export default class extends React.Component {
           Login with Facebook
         </FontAwesome.Button>
 
+        <TouchableOpacity onPress={Actions.register}>
+          <Text>Register</Text>
+        </TouchableOpacity>
+
+
         <TouchableOpacity onPress={Actions.pop}  style={{position:'absolute',left:20,top:30}}>
         <Ionicons name="md-arrow-back" size={30} color="gray" style={{width:50}} />
         </TouchableOpacity>
