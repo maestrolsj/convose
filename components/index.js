@@ -1,5 +1,6 @@
 import Screen from "./Screen"
 import CardList from "./CardList"
+import ChatList from "./ChatList"
 import ConvoseText from "./ConvoseText"
 import TouchOpacityBt from "./TouchOpacityBt"
 import ConvoseView    from "./ConvoseView"
@@ -10,6 +11,7 @@ export {
   ConvoseText,
   Screen,
   CardList,
+  ChatList,
   TouchOpacityBt,
   ConvoseView,
   ConvoseNavbar,
