@@ -4,6 +4,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview
 import {Actions} from "react-native-router-flux";
 import ShadowView from 'react-native-shadow-view'
 import {connect}            from 'react-redux'
+import {gotoChatScreen, updatePartnerProfile} from "../../redux/actions";
 
 const DeviceWidth  = Dimensions.get('window').width ;
 const DeviceHeight  = Dimensions.get('window').height ;
@@ -46,17 +47,11 @@ class RecycleTestComponent extends React.Component {
     };
   }
 
-  _generateArray(n) {
-    let arr = new Array(n);
-    for (let i = 0; i < n; i++) {
-      arr[i] = i;
-    }
-    return arr;
-  }
 
   _rowRenderer(type, data) {
-    let containerId = containerCount++;
 
+       console.log("######## DATA #######");
+       console.log(data);
        return(
 
            <ShadowView style={{
@@ -76,11 +71,11 @@ class RecycleTestComponent extends React.Component {
              margin:30
            }}>
 
-             <TouchableOpacity onPress={()=>Actions.chat()} style={{width:DeviceWidth-60,height:250,alignItems:'center'}} >
+             <TouchableOpacity onPress={()=>this.props.gotoChatScreen(data)} style={{width:DeviceWidth-60,height:250,alignItems:'center'}} >
                <View style={{flex:1,flexDirection:'row'}}>
                  <View style={{flex:1,height:60,borderRadius:10, backgroundColor:'#EC1F45',borderWidth:1, borderColor:'transparent',margin:0.5,
                    justifyContent:'center', alignItems:'flex-end'}}>
-                   <Text style={{color:'white', fontWeight:'bold',fontSize:17, marginRight:15}}>SEJIN</Text>
+                   <Text style={{color:'white', fontWeight:'bold',fontSize:17, marginRight:15}}>{data.username}</Text>
 
                  </View>
 
@@ -119,7 +114,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch =>
   ({
-
+    gotoChatScreen(value) {
+        dispatch( updatePartnerProfile(value));
+        dispatch( gotoChatScreen() );
+    }
   })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecycleTestComponent)
