@@ -1,9 +1,10 @@
-import React from 'react';
-import {View, Text, StyleSheet,TouchableOpacity} from "react-native";
-import {Actions} from "react-native-router-flux";
-import {Screen,CardList,TouchOpacityBt, ConvoseText}     from "../../components/";
+import React                                         from 'react';
+import {View, Text, StyleSheet,TouchableOpacity}     from "react-native";
+import {Actions}                                     from "react-native-router-flux";
+import {Screen,ChatList} from "../../components/";
+import {connect}            from 'react-redux'              ;
 
-export default class extends React.Component {
+class Chat  extends React.Component {
  static onEnter = () => {
     Actions.refresh({
       title: 'Chat',
@@ -11,13 +12,24 @@ export default class extends React.Component {
       hideNavBar:false,
       onLeft: () => {Actions.pop()}
     });
+
+
   };
 
   render() {
     return (
-      <Screen>
-        <ConvoseText>Chat page</ConvoseText>
-      </Screen>
+    <Screen><ChatList/></Screen>
     );
   }
 }
+
+
+
+const mapStateToProps = (state) => ({
+
+
+});
+
+
+export default connect(mapStateToProps)(Chat)
+
