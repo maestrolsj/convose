@@ -1,8 +1,8 @@
 import ACTION_TYPES from "./actionTypes"
 import * as Api from "./../../api"
-import { AsyncStorage } from "react-native"
-import { Actions } from "react-native-router-flux"
-import { i18n } from "./../../utils"
+import {AsyncStorage} from "react-native"
+import {Actions} from "react-native-router-flux"
+import {i18n} from "./../../utils"
 
 export const getAuthStorage = () => {
   return dispatch => {
@@ -18,12 +18,13 @@ export const getAuthStorage = () => {
               dispatch(saveAuthStorage(guestInfo));
               return guestInfo
             })
-            .catch(error =>  console.log(error))
+            .catch(error => console.log(error))
         }
       })
       .then(userData => {
-        dispatch({type:ACTION_TYPES.GET_AUTH_STORAGE,
-                  payload:userData
+        dispatch({
+          type    : ACTION_TYPES.GET_AUTH_STORAGE,
+          payload : userData
         });
         dispatch(getAuthStorageSuccess());
         //dispatch(loginUserAuto(userData))
@@ -36,16 +37,13 @@ export const getAuthStorage = () => {
 }
 
 
-
-
-const saveAuthStorage= guestInfo => ({
+const saveAuthStorage = guestInfo => ({
   type: ACTION_TYPES.SAVE_AUTH_STORAGE,
-  payload:guestInfo
+  payload: guestInfo
 })
 
 
-
-const getAuthStorageSuccess= () => ({
+const getAuthStorageSuccess = () => ({
   type: ACTION_TYPES.GET_AUTH_STORAGE_SUCCESS,
 })
 
@@ -66,6 +64,43 @@ const fetchFailure = error => ({
   type: ACTION_TYPES.FETCH_FAILURE,
   error,
 })
+
+
+// Sign Up Process
+export const registerUser = values =>  (dispatch, getState) => {
+
+  var obj =   {
+     token : getState().storage.userInfo.authentication_token,
+     data  : {
+       user: {
+         email                : values.id,
+         password             : values.pwd,
+         password_confirmation: values.confirm
+       }
+     }
+  };
+
+  Api.registerUser(obj)
+    .then(data => {
+      console.log('Sign ');  // FETCH MY NEW INFO
+      console.log(data);
+      if(data['error']) throw data['error']
+      else {
+           console.log('Sign Up Success');  // FETCH MY NEW INFO
+      }
+    })
+    .catch((data)=> {
+
+      console.log('Sign Up Fail');  // FETCH MY NEW INFO
+      console.log(data);
+      dispatch({
+        type: ACTION_TYPES.REGISTER_USER_ERROR,
+        payload: data.error
+      })
+
+    })
+
+}
 
 export const loginUser = values => {
   return dispatch => {
@@ -97,7 +132,6 @@ const logoutUserSuccess = () => ({
 })
 
 
-
 export const changeSuggestions = suggestions =>
   ({
     type: ACTION_TYPES.CHANGE_SUGGESTIONS,
@@ -118,7 +152,7 @@ export const fetchSuggestion = value => dispatch => {
   let parm = `?q=${value}&limit=1000`;
 
   Api.fetchSuggestion(parm)
-    .then(suggestions =>  dispatch(changeSuggestions(suggestions.autocomplete))  )
+    .then(suggestions => dispatch(changeSuggestions(suggestions.autocomplete)))
     .catch(error => {
       dispatch({
         type: ACTION_TYPES.CANCEL_FETCHING
@@ -128,67 +162,102 @@ export const fetchSuggestion = value => dispatch => {
 
 }
 
-export const searchPeople  = value => dispatch =>{
 
-  Api.fetchPeople(value.authentication_token)
-    .then((r)=>dispatch(updatePeopleList(r.suggestions)))
-    .catch(error => { })
-}
+const getChatContent = value => ({
+  type: ACTION_TYPES.GET_CHAT_CONTENT,
+  payload: value
+})
 
-const updatePeopleList= peopleInfo => ({
-  type   : ACTION_TYPES.SEARCH_PEOPLE,
-  payload:peopleInfo
+const updatePartnerInfo = value => ({
+  type: ACTION_TYPES.UPDATE_PARTNERINFO,
+  payload: value
 })
 
 
+export const gotoChatScreen = partnerInfo => (dispatch, getState) => {
 
 
-export const updateProfile = value => dispatch =>{
+  var obj =   {
+    'userInfo': getState().storage.userInfo,
+    'partnerInfo': getState().chat.partnerInfo
+  };
 
-/*
-  fetch(`http://beta.convose.com/profile.json`,
-    {
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization : value.authentication_token
-      },
-      body: JSON.stringify({
-        "profile": {
-          "username": value.username,
-          "passions": [
-            {"name":"Languages","skill_level":0},
-            {"name":"Sports","skill_level":3},
-            {"name":"Dingsbums","skill_level":0}
-          ],
-          "proficiencies":[
-            {"language_id":"Russian","level":3},
-            {"language_id":"German","level":3},
-            {"language_id":"English","level":3},
-            {"language_id":"Korean","level":3}
-          ]
-        }
-      }),
-    }
-  )
-    .then(response => response._bodyInit)
-    .then(suggestions => {
-      dispatch(changeSuggestions(JSON.parse(suggestions).autocomplete));
+  Api.fetchChatContent(obj)
+    .then(content =>  {
+       console.log("#### FETCH CHAT CONTENT ####");
+       console.log(content);
+      //dispatch(getChatContent(content))
+    } )
 
-    })
+    .catch(error => console.log(error))
+}
+
+
+export const updatePartnerProfile = partnerInfo => dispatch => {
+  dispatch(updatePartnerInfo(partnerInfo))
+}
+
+
+export const searchPeople = value => dispatch => {
+
+  Api.fetchPeople(value.authentication_token)
+    .then((r) => dispatch(updatePeopleList(r.suggestions)))
     .catch(error => {
+    })
+}
 
-      dispatch({
-        type: ACTION_TYPES.CANCEL_FETCHING
-      })
+const updatePeopleList = peopleInfo => ({
+  type: ACTION_TYPES.SEARCH_PEOPLE,
+  payload: peopleInfo
+})
 
-    })*/
+
+export const updateProfile = value => dispatch => {
+
+  /*
+   fetch(`http://beta.convose.com/profile.json`,
+   {
+   method: 'PATCH',
+   headers: {
+   Accept: 'application/json',
+   'Content-Type': 'application/json',
+   Authorization : value.authentication_token
+   },
+   body: JSON.stringify({
+   "profile": {
+   "username": value.username,
+   "passions": [
+   {"name":"Languages","skill_level":0},
+   {"name":"Sports","skill_level":3},
+   {"name":"Dingsbums","skill_level":0}
+   ],
+   "proficiencies":[
+   {"language_id":"Russian","level":3},
+   {"language_id":"German","level":3},
+   {"language_id":"English","level":3},
+   {"language_id":"Korean","level":3}
+   ]
+   }
+   }),
+   }
+   )
+   .then(response => response._bodyInit)
+   .then(suggestions => {
+   dispatch(changeSuggestions(JSON.parse(suggestions).autocomplete));
+
+   })
+   .catch(error => {
+
+   dispatch({
+   type: ACTION_TYPES.CANCEL_FETCHING
+   })
+
+   })*/
   dispatch(searchPeople(value));
 
 
 }
 
-export const clearSuggestion = ()=>({
-  type:ACTION_TYPES.CLEAR_SUGGESTIONS
+export const clearSuggestion = () => ({
+  type: ACTION_TYPES.CLEAR_SUGGESTIONS
 })
