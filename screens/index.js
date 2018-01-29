@@ -1,11 +1,12 @@
-import Chat from "./Chat"
-import Home from "./Home"
-import Login from "./Login"
-import Signup from "./Signup"
-import MoreBox from "./MoreBox"
+import Chat          from "./Chat"
+import Home          from "./Home"
+import Login         from "./Login"
+import Signup        from "./Signup"
+import MoreBox       from "./MoreBox"
 import DrawerContent from "./DrawerContent"
-import Profile from "./Profile"
-import Search from "./Search"
+import Profile       from "./Profile"
+import Search        from "./Search"
+import Register      from "./Register"
 
 export {
   Chat,
@@ -15,5 +16,6 @@ export {
   Signup,
   MoreBox,
   Profile,
-  Search
+  Search,
+  Register
 }
