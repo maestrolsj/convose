@@ -2,9 +2,9 @@ import React   from 'react';
 import {View, Text,Image ,StyleSheet,TouchableOpacity,TextInput,StatusBar, Dimensions } from "react-native";
 import {Actions}                                         from "react-native-router-flux";
 import {Screen,CardList,TouchOpacityBt, ConvoseText, ConvoseNavbar, ConvoseView}     from "../../components/";
-import { Ionicons,Octicons, Entypo } from '@expo/vector-icons';
-import {connect}            from 'react-redux'              ;
-import {getAuthStorage}      from "../../redux/actions";
+import { Ionicons,Octicons, Entypo } from '@expo/vector-icons'   ;
+import {connect}                     from 'react-redux'          ;
+import {getAuthStorage}              from "../../redux/actions"  ;
 
 
 
