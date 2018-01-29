@@ -23,7 +23,7 @@ export default class App extends Component {
 
     _loadAssetsAsync = async () => {
         await Font.loadAsync({
-            UbuntuBold: require("./assets/fonts/Ubuntu-Bold.ttf"),
+            UbuntuBold   : require("./assets/fonts/Ubuntu-Bold.ttf"),
             UbuntuRegular: require("./assets/fonts/Ubuntu-Regular.ttf"),
         })
         this.setState({
