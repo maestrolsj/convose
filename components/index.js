@@ -6,6 +6,7 @@ import TouchOpacityBt from "./TouchOpacityBt"
 import ConvoseView    from "./ConvoseView"
 import ConvoseNavbar  from "./ConvoseNavbar"
 import ConvoseModal  from "./ConvoseModal"
+import Button  from "./Button"
 
 export {
   ConvoseText,
@@ -15,5 +16,6 @@ export {
   TouchOpacityBt,
   ConvoseView,
   ConvoseNavbar,
-  ConvoseModal
+  ConvoseModal,
+  Button
 }

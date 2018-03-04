@@ -1,12 +1,10 @@
 export default {
   FONT: {
     DEFAULT: `
-      font-family: Ubuntu, sans-serif;
-      font-weight: 400;
+      font-family: UbuntuRegular;
     `,
     BOLD: `
-      font-family: Ubuntu, sans-serif;
-      font-weight: 700;
+      font-family: UbuntuBold;
     `,
   },
   FONT_SIZES: {

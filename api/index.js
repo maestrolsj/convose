@@ -30,11 +30,10 @@ export const fetchLogin = values => {
 
 export const registerUser = v => {
   const endpoint = ENDPOINTS.REGISTER_USER
-  const method   = "PUT";
-  const token    = v.token;
-  const values   = v.data; // userInfo
+  const token = v.token;
+  const values = v.data; // userInfo
 
-  return fetchEndpoint({endpoint, method, token, values});
+  return fetchEndpoint({endpoint, token, values});
 
 }
 /**

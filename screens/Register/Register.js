@@ -1,9 +1,7 @@
-import React                                                from 'react'                ;
-import {View, Text, StyleSheet, TouchableOpacity,TextInput} from "react-native"         ;
-import { FontAwesome,MaterialCommunityIcons, Ionicons }     from '@expo/vector-icons'   ;
-import {Screen, ConvoseText}                                from "../../components/"    ;
-import {connect}                                            from 'react-redux'          ;
-import {registerUser}                                       from "../../redux/actions"  ;
+import React                                                from 'react'
+import {View, Text, StyleSheet, TouchableOpacity,TextInput} from "react-native"
+import { FontAwesome,MaterialCommunityIcons, Ionicons }     from '@expo/vector-icons'
+import {Screen, ConvoseText}                                from "../../components/"
 
 // define your styles
 const styles = StyleSheet.create({
@@ -84,7 +82,7 @@ class Register extends React.Component {
                    onChangeText          = {(val) => {this.setState({pwd: val})}}
                    secureTextEntry/>
         <TouchableOpacity style={styles.buttonContainer}
-                          onPress={()=>this.props.dispatchRegisterUser({
+                          onPress={()=>this.props.registerUser({
                                id      : this.state.id,
                                pwd     : this.state.pwd,
                                confirm : this.state.pwd
@@ -97,18 +95,4 @@ class Register extends React.Component {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  errorMsg: state.register,
-
-});
-
-
-const mapDispatchToProps = dispatch =>
-  ({
-    dispatchRegisterUser(registerInfo) {
-      dispatch( registerUser(registerInfo))
-    }
-  })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default Register

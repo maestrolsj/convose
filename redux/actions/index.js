@@ -90,9 +90,8 @@ export const registerUser = values =>  (dispatch, getState) => {
       }
     })
     .catch((data)=> {
-
-      console.log('Sign Up Fail');  // FETCH MY NEW INFO
       console.log(data);
+      console.log('Sign Up Fail');  // FETCH MY NEW INFO
       dispatch({
         type: ACTION_TYPES.REGISTER_USER_ERROR,
         payload: data.error

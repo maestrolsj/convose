@@ -1,4 +1,4 @@
-const BASE_URL           = 'http://beta.convose.com'
+const BASE_URL           = 'http://api.convose.com'
 const PATH_LOGIN         = '/v1/users/login'
 const PATH_SUGGESTION    =  '/autocomplete/interests'
 const PATH_GUESTINFO     =  '/users/guest'
