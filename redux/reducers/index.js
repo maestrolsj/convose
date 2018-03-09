@@ -21,12 +21,11 @@ export default combineReducers({
   }),
   people,
   chat,
-  register
-
-
+  register,
 })
 
 export const getAuth    = ({ auth })    => auth
 export const getNetwork = ({ network }) => network
 export const getRoutes  = ({ routes })  => routes
 export const getStorage = ({ storage }) => storage
+export const getRegister = ({ register}) => register
