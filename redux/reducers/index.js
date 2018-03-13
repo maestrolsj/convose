@@ -7,7 +7,7 @@ import storage                from "./storage"
 import people                 from "./people"
 import chat                   from "./chat"
 import register               from "./register"
-import {fetching,suggestions} from "./suggest"
+import suggest                from "./suggest"
 
 export default combineReducers({
   auth,
@@ -15,17 +15,16 @@ export default combineReducers({
   network,
   routes,
   storage,
-  suggestedWords: combineReducers({
-     fetching,
-     suggestions
-  }),
   people,
   chat,
   register,
+  suggest,
 })
 
 export const getAuth    = ({ auth })    => auth
 export const getNetwork = ({ network }) => network
 export const getRoutes  = ({ routes })  => routes
-export const getStorage = ({ storage }) => storage
 export const getRegister = ({ register}) => register
+export const getStorage = ({ storage }) => storage
+export const getSuggestedWords = ({suggest}) => suggest
+
