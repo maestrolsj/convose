@@ -3,13 +3,8 @@ import {View, Text,Image ,StyleSheet,TouchableOpacity,TextInput,StatusBar, Dimen
 import {Actions}                                         from "react-native-router-flux";
 import {Screen,CardList,TouchOpacityBt, ConvoseText, ConvoseNavbar, ConvoseView}     from "../../components/";
 import { Ionicons,Octicons, Entypo } from '@expo/vector-icons'   ;
-import {connect}                     from 'react-redux'          ;
-import {getAuthStorage}              from "../../redux/actions"  ;
 
 
-
-
-const DeviceWidth  = Dimensions.get('window').width ;
 
 
  class Home extends React.Component {
@@ -31,7 +26,7 @@ const DeviceWidth  = Dimensions.get('window').width ;
 
    constructor(props) {
      super(props);
-     this.props.getUserFromStorage();
+     this.props.getAuthStorage();
   }
 
   render() {
@@ -45,7 +40,7 @@ const DeviceWidth  = Dimensions.get('window').width ;
             <Image source={require('../../assets/images/logo.png')} resizeMode="contain"  style={{width:102,height:50}}/></ConvoseView>
           <TouchOpacityBt onPress={Actions.morebox} style={{flex:1,height:50}}><Entypo name="dots-three-vertical" size={17} color="gray"/></TouchOpacityBt>
         </ConvoseNavbar>
-
+        <Text>{this.props.userInfo.email}</Text>
         <CardList/>
 
         <View  flexDirection="row" height={50}>
@@ -63,19 +58,8 @@ const DeviceWidth  = Dimensions.get('window').width ;
   }
 }
 
+// userInfo: state.storage.userInfo,
 
 
-const mapStateToProps = (state) => ({
-  userInfo: state.storage.userInfo,
 
-});
-
-
-const mapDispatchToProps = dispatch =>
-  ({
-    getUserFromStorage() {
-        dispatch( getAuthStorage())
-    }
-  })
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home
