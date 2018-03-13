@@ -25,13 +25,16 @@ class SuggestionList extends React.Component {
   renderRow(items) {
     return (
       <TouchableOpacity style={{height:30,flex:1, justifyContent:'center', marginLeft:50}}
-                        onPress={()=>this.props.onUpdateProfile(this.props.userInfo)}>
+                        onPress={()=>this.props.updateProfile(this.props.userInfo)}>
         <Text>{items.item.text}   ({items.item.user_count})</Text>
       </TouchableOpacity>
     )
   }
     render()
     {
+
+      console.log("######## SUGGESTED ########");
+      console.log(this.props.isFetching);
       return (
 
         <View style={{width:DeviceWidth}}>
@@ -42,7 +45,10 @@ class SuggestionList extends React.Component {
                        autoCorrect           = {false}
                        keyboardType          = 'default'
                        onSubmitEditing       = {() => { Keyboard.dismiss(); }}
-                       onChangeText          = {(text) => this.props.onChange(text) }
+                       onChangeText          = {(text) => {
+                         if (text) this.props.fetchSuggestion(text);
+                         else      this.props.clearSuggestions();
+                       } }
                        returnKeyType         = "search"
                        placeholder           = 'Search Interest'
                        underlineColorAndroid = 'transparent'
@@ -53,7 +59,7 @@ class SuggestionList extends React.Component {
             />
           </View>
           <FlatList
-            data       = {this.props.suggestedWords.suggestions}
+            data       = {this.props.suggestedWords}
             renderItem = {this.renderRow}
             style={{position:'absolute',top:50,left:0, width:DeviceWidth,height:300}}
             keyExtractor          = {(item, index) => index}
@@ -65,6 +71,7 @@ class SuggestionList extends React.Component {
 
 }
 
+/*
 const mapStateToProps = (state) => ({
   suggestedWords: state.suggestedWords,
   userInfo      : state.storage.userInfo
@@ -96,9 +103,9 @@ const mapDispatchToProps = dispatch => ({
       )
     }
 })
+*/
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(SuggestionList)
+export default SuggestionList
 
 
 
