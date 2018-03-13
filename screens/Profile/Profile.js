@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Animated, Dimensions, Button,TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import {connect}            from 'react-redux'
 const DeviceWidth = Dimensions.get('window').width;
 const DeviceHeight = Dimensions.get('window').height;
 
@@ -31,11 +30,5 @@ class Profile extends React.Component {
 
 
 
-const mapStateToProps = (state) => ({
-  userInfo: state.storage.userInfo,
 
-});
-
-
-
-export default connect(mapStateToProps)(Profile)
+export default Profile
