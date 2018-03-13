@@ -134,7 +134,7 @@ const logoutUserSuccess = () => ({
 export const changeSuggestions = suggestions =>
   ({
     type: ACTION_TYPES.CHANGE_SUGGESTIONS,
-    payload: suggestions
+    payload: {"suggestedWords" : suggestions}
   })
 
 export const clearSuggestions = () =>
@@ -142,24 +142,23 @@ export const clearSuggestions = () =>
     type: ACTION_TYPES.CLEAR_SUGGESTIONS
   })
 
+
+
+
 export const fetchSuggestion = value => dispatch => {
 
-  dispatch({
-    type: ACTION_TYPES.FETCH_SUGGESTIONS
-  });
+  dispatch(fetchInProgress());
 
   let parm = `?q=${value}&limit=1000`;
 
   Api.fetchSuggestion(parm)
-    .then(suggestions => dispatch(changeSuggestions(suggestions.autocomplete)))
-    .catch(error => {
-      dispatch({
-        type: ACTION_TYPES.CANCEL_FETCHING
-      })
-
+    .then(suggestions => {
+      dispatch(changeSuggestions(suggestions.autocomplete));
+      dispatch(fetchSuccess());
     })
-
+    .catch(error  => dispatch(fetchFailure(error)))
 }
+
 
 
 const getChatContent = value => ({
