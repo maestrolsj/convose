@@ -26,4 +26,4 @@ export const passwordsMustMatch = values => {
   return errors
 }
 
-export const removeWhiteSpace = value => value && value.replace(/ /g,'')
+export const removeWhiteSpace = value => value && value.replace(/ /g, '')

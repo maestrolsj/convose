@@ -1,15 +1,14 @@
-import {connect} from 'react-redux'
-import {registerUser} from "../../redux/actions"
-import {getRegister} from "../../redux/reducers"
-import Register from "./Register"
+import { connect } from 'react-redux'
+import { getRegister } from '../../redux/reducers'
+import Register from './Register'
 import * as actions from './../../redux/actions'
 
 const mapStateToProps = (state, props) => ({
-  ...getRegister(state),
+  ...getRegister(state)
 })
 
 const mapDispatchToProps = {
-  ...actions,
+  ...actions
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)

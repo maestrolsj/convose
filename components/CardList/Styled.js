@@ -1,4 +1,4 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 import { StyleConst } from '../../const'
 
 const { COLORS, TRANSITION } = StyleConst
@@ -7,7 +7,7 @@ const StyledView = styled.View`
   background-color: red;
   align-items: center;
   justify-content: center;
-`;
+`
 
 
 const RowTouchableOpacity = styled.TouchableOpacity`
@@ -21,4 +21,3 @@ export {
   StyledView,
   RowTouchableOpacity
 }
-

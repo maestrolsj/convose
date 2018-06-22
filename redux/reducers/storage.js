@@ -3,17 +3,17 @@ import ACTION_TYPES from "../actions/actionTypes"
 const initialState = {
     authStorageLoaded: false,
     authStorageError: false,
-    userInfo :{}
+    userInfo: {}
 }
 
-export default function(state = initialState, action) {
-    switch(action.type) {
+export default function (state = initialState, action) {
+    switch (action.type) {
 
         case ACTION_TYPES.GET_AUTH_STORAGE:
-         return{
-           ...state,
-           userInfo : action.payload
-         }
+            return {
+                ...state,
+                userInfo: action.payload
+            }
         case ACTION_TYPES.GET_AUTH_STORAGE_SUCCESS:
             return {
                 ...state,
@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
         case ACTION_TYPES.GET_AUTH_STORAGE_FAILURE:
             return {
                 authStorageLoaded: true,
-                authStorageError : true,
+                authStorageError: true,
             }
 
         case ACTION_TYPES.LOGOUT_SUCCESS:

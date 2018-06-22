@@ -1,16 +1,16 @@
-import React                                         from 'react';
-import {View, Text, StyleSheet,TouchableOpacity}     from "react-native";
-import {Actions}                                     from "react-native-router-flux";
-import {Screen,ChatList} from "../../components/";
-import {connect}            from 'react-redux'              ;
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Actions } from "react-native-router-flux";
+import { Screen, ChatList } from "../../components/";
+import { connect } from 'react-redux';
 
-class Chat  extends React.Component {
- static onEnter = () => {
+class Chat extends React.Component {
+  static onEnter = () => {
     Actions.refresh({
       title: 'Chat',
       leftTitle: '< home',
-      hideNavBar:false,
-      onLeft: () => {Actions.pop()}
+      hideNavBar: false,
+      onLeft: () => { Actions.pop() }
     });
 
 
@@ -18,7 +18,7 @@ class Chat  extends React.Component {
 
   render() {
     return (
-    <Screen><ChatList/></Screen>
+      <Screen><ChatList /></Screen>
     );
   }
 }

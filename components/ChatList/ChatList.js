@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, Dimensions ,TouchableOpacity, Image} from "react-native";
+import { View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
-import {Actions} from "react-native-router-flux";
-import {connect}            from 'react-redux'
-import {getChatContent}     from "../../redux/actions";
+import { Actions } from "react-native-router-flux";
+import { connect } from 'react-redux'
+import { getChatContent } from "../../redux/actions";
 
-const DeviceWidth  = Dimensions.get('window').width ;
-const DeviceHeight  = Dimensions.get('window').height ;
+const DeviceWidth = Dimensions.get('window').width;
+const DeviceHeight = Dimensions.get('window').height;
 
 const ViewTypes = {
   FULL: 0,
@@ -31,8 +31,8 @@ class RecycleTestComponent extends React.Component {
 
 
     this._layoutProvider = new LayoutProvider(
-      index =>  ViewTypes.FULL
-    ,
+      index => ViewTypes.FULL
+      ,
       (type, dim) => {
         dim.width = width;
         dim.height = 50;
@@ -58,32 +58,32 @@ class RecycleTestComponent extends React.Component {
   _rowRenderer(type, data) {
     let containerId = containerCount++;
 
-       return(
-               <View style={{flex:1,flexDirection:'row'}}>
-                  <Text>hello hello</Text>
-               </View>
-        )
+    return (
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Text>hello hello</Text>
+      </View>
+    )
   }
 
 
 
 
   render() {
-    return <RecyclerListView style={{width:DeviceWidth, height:DeviceHeight}}
+    return <RecyclerListView style={{ width: DeviceWidth, height: DeviceHeight }}
       layoutProvider={this._layoutProvider} dataProvider={new DataProvider((r1, r2) => { return r1 !== r2; }).cloneWithRows(this.props.peopleInfo)} rowRenderer={this._rowRenderer} />
   }
 }
 
 
 const mapStateToProps = (state) => ({
-  peopleInfo : state.people.peopleInfo
+  peopleInfo: state.people.peopleInfo
 });
 
 
 const mapDispatchToProps = dispatch =>
   ({
     getChatContentFromDB() {
-      dispatch( getChatContent())
+      dispatch(getChatContent())
     }
   })
 

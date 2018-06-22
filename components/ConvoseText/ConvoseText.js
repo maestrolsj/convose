@@ -1,26 +1,26 @@
-import React from "react"
-import PropTypes from "prop-types"
-import {StyledText} from "./Styled"
+import React from "react";
+import PropTypes from "prop-types";
+import { StyledText } from "./Styled";
 
 const ConvoseText = ({ children, ...styleProps }) => {
   return (
     <StyledText {...styleProps}>
-      { children }
+      {children}
     </StyledText>
-  )
-}
+  );
+};
 
 ConvoseText.propTypes = {
   children: PropTypes.any,
   fontSize: PropTypes.string,
   isBold: PropTypes.bool,
-  color : PropTypes.string
-}
+  color: PropTypes.string
+};
 
 ConvoseText.defaultProps = {
   fontSize: "24px",
   isBold: false,
-  color:'black'
-}
+  color: 'black'
+};
 
 export default ConvoseText;
